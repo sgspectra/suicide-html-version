@@ -1,0 +1,3 @@
+TODO:
+Learn JS, JSON, JQUERY
+

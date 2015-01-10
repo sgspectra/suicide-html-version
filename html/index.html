@@ -3,6 +3,7 @@
 <head>
 	<title>Suicide: The Drinking Game</title>
 	<script type="text/javascript" src="js/game.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
 	<h2>Suicide: The Drinking Game</h2>
@@ -16,6 +17,21 @@
 		test number: <input type="text" name="test"><br/>
 		<input type="submit" value="Submit and Begin">
 	</form>
+	<p>test</p>
+	<p>
+		<script>
+		var deck = [];
+		function getArray(){
+			return $.getJSON("http://ajstorch.com/suicide/json/gamedata.json");
+		}
+		getArray().done(function(json){
+			$.each(json,function(key,value){
+				deck[key] = {Category:val.Category};
+			});
+		});
+		document.write(deck);
+		</script>
+	</p>
 </body>
 </html>
 		

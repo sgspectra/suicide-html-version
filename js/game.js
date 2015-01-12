@@ -8,13 +8,23 @@ var p4hand = [];
 var turn = 0;
 //will be used to dertmine which round of the game it is
 var round = 0;
+$(document).ready(function(){
+	$("#round1").hide();
+	$("#round2").hide();
+	$("#round3").hide();
+	$("#round4").hide();
+	$("#hands").hide();
+});
 
 function submitPlayers(form){
 	players[0] = form.player1.value;
 	players[1] = form.player2.value;
 	players[2] = form.player3.value;
 	players[3] = form.player4.value;
-	$("#players").hide();
+	$(document).ready(function(){
+		$("#players").hide();
+	});
+
 }
 
 function playerTurn(pHand){
@@ -29,6 +39,24 @@ function shuffleArray(array) {
         array[j] = temp;
     }
     return array;
+}
+
+function idCard(card){
+	//card mod 4 to get suit 1 heart 2 diamond 3 spade 0 club
+	var suit = card % 4;
+	var number = card / 4;
+	var suitString = "";
+	if (suit === 1){
+		suitString = "hearts";
+	} else if (suit === 2){
+		suitString = "diamonds";
+	} else if (suit === 3){
+		suitString = "spades";
+	} else {
+		suitString = "clubs";
+	}
+	var cardName = number+" of "+suitString;
+	return cardName;
 }
 
 //begin main program under this line

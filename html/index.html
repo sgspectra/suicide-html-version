@@ -7,9 +7,9 @@
 </head>
 <body>
 	<h2>Suicide: The Drinking Game</h2>
-	<h3>Player Names</h3>
-	<p>Enter player names in the fields below. Leave blank if there is no player.</p>
-	<form id="players" onsubmit="submitPlayers(this)">
+	<h3 id="players">Player Names</h3>
+	<p id="players">Enter player names in the fields below. Leave blank if there is no player.</p>
+	<form id="players" onsubmit="submitPlayers(this); return false;">
 		Player 1: <input type="text" name="player1"><br/>
 		Player 2: <input type="text" name="player2"><br/>
 		Player 3: <input type="text" name="player3"><br/>
@@ -19,7 +19,6 @@
 	</form>
 	<div id="hands">
 		<h2>Players Hands</h2>
-		
 	</div>
 	<div id="round1">
 		<h4>Round 1</h4>

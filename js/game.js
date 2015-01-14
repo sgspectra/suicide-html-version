@@ -16,31 +16,15 @@ $(document).ready(function(){
 	$("#hands").hide();
 });
 
-
-//TODO figure out why this doesn't prevent default
-$("#players").on('submit',function(e){
-	if(e.preventDefault){
-		e.preventDefault();
-	}else{
-		e.returnValue = false;
-	}
-})
-
 function submitPlayers(form){
 	players[0] = form.player1.value;
 	players[1] = form.player2.value;
 	players[2] = form.player3.value;
 	players[3] = form.player4.value;
-	//TODO figure out why this doesn't prevent default
 	$(document).ready(function(){
 		$("#players").hide();
 		$("#hands").show();
 	});
-	if(form.preventDefault){
-		form.preventDefault();
-	}else{
-		form.returnValue = false;
-	}
 }
 
 function playerTurn(pHand){

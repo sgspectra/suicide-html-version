@@ -33,9 +33,10 @@ function submitPlayers(form){
 	players[2] = form.player3.value;
 	players[3] = form.player4.value;
 	$(document).ready(function(){
-		$("#players").hide();
+		$(".players").hide();
 		$("#hands").show();
 		$("#round1").show();
+		setPlayer(players[turn]);
 	});
 }
 
@@ -43,7 +44,7 @@ function submitPlayers(form){
 function setPlayer(player){
 	//update html to show whos turn it is
 	$(document).ready(function(){
-		$("#whoIs").replaceWith("It's "+player+ " turn!");
+		$("#whosTurn").replaceWith("It's "+player+ " turn!");
 	});
 }
 
@@ -93,13 +94,48 @@ function submitRoundOneA(){
 	} else {
 		$("#instructions").replaceWith("Take Drinks!");
 	}
+	//put card in players hand
 	hands[turn].push(cardAsString);
+	//move to next players turn
 	turn++;
 	if (turn === 4){
 		//TODO is it possible to but some sort of pause here?
+		//hide current round and show next
 		$("#round1").hide();
 		$("#round2").show();
+		//reset turns
+		turn = 0;
 	}
+}
+function submitRoundOneB(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//see if players guess is correct
+	var suit = currentCar % 4;
+	if (suit === 0 || suit === 3){
+		//TODO create functions to give drinks as number
+		$("#insturctions").replaceWith("Assign Drinks!");
+	} else {
+		$("#insturctions").replaceWith("Take Drinks!");
+	}
+	//put card in players hand
+	hands[turn].push(cardAsString);
+	//move to next players turn
+	turn++;
+	//check to see if that was the last player for that round
+	if (turn === 4){
+		//hide current round and show next
+		//TODO pause?
+		$("#round1").hide();
+		$("#round2").show();
+		//reset turn
+		turn = 0;
+	}
+}
+
+//this function is used to update the players hands
+function updateHands(){
+	//TODO write a function to update the players hands in html (probably $var.append())
 }
 
 //begin main program under this line

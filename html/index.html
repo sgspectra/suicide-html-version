@@ -7,14 +7,13 @@
 </head>
 <body>
 	<h2>Suicide: The Drinking Game</h2>
-	<h3 id="players">Player Names</h3>
-	<p id="players">Enter player names in the fields below. Leave blank if there is no player.</p>
-	<form id="players" onsubmit="submitPlayers(this); return false;">
+	<h3 class="players">Player Names</h3>
+	<p class="players">Enter player names in the fields below. Leave blank if there is no player.</p>
+	<form class="players" onsubmit="submitPlayers(this); return false;">
 		Player 1: <input type="text" name="player1"><br/>
 		Player 2: <input type="text" name="player2"><br/>
 		Player 3: <input type="text" name="player3"><br/>
 		Player 4: <input type="text" name="player4"><br/>
-		test number: <input type="text" name="test"><br/>
 		<input type="submit" value="Submit and Begin">
 	</form>
 	<div id="hands">
@@ -24,8 +23,10 @@
 		<h4>Round 1</h4>
 		<p>Please select if you think the card will be red or black</p>
 		<p id="whosTurn"></p>
+		<br/>
 		<button type="button" onclick="submitRoundOneA();">Red</button>
-		<button type="button">Black</button>
+		<button type="button" onclick="submitRoundOneB();">Black</button>
+		<br/>
 		<p id="instructions"></p>
 	</div>
 	<div id="round2">

@@ -1,13 +1,21 @@
+//global variables
+//array containing player names
 var players = [];
+//array with 1-54 to be used to id "cards"
 var deck = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52];
+//variable to hold card that is being used
+var currentCard = 0;
+//arrays to hold what cards are in a players hand
 var p1hand = [];
 var p2hand = [];
 var p3hand = [];
 var p4hand = [];
+var hands = [p1hand,p2hand,p3hand,p4hand];
 //will be used to determine who is up
 var turn = 0;
 //will be used to dertmine which round of the game it is
 var round = 0;
+//code to hide html content until it is needed later in the game
 $(document).ready(function(){
 	$("#round1").hide();
 	$("#round2").hide();
@@ -16,6 +24,9 @@ $(document).ready(function(){
 	$("#hands").hide();
 });
 
+//functions to be called during the game
+
+//stores the values submitted into the players array, then hides the player form and displays the html where players hands will be stored, begins round1
 function submitPlayers(form){
 	players[0] = form.player1.value;
 	players[1] = form.player2.value;
@@ -24,13 +35,19 @@ function submitPlayers(form){
 	$(document).ready(function(){
 		$("#players").hide();
 		$("#hands").show();
+		$("#round1").show();
 	});
 }
 
-function playerTurn(pHand){
-	
+//brings up html for round1, player is the name of the player who is up
+function setPlayer(player){
+	//update html to show whos turn it is
+	$(document).ready(function(){
+		$("#whoIs").replaceWith("It's "+player+ " turn!");
+	});
 }
 
+//Function that uses Fisher-Yates algorithm to "shuffle the deck"
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -41,10 +58,11 @@ function shuffleArray(array) {
     return array;
 }
 
+//function used to determine which card has been drawn based on the integer taken from the deck array
 function idCard(card){
 	//card mod 4 to get suit 1 heart 2 diamond 3 spade 0 club
 	var suit = card % 4;
-	var number = card / 4;
+	var number = Math.floor(card / 4);
 	var suitString = "";
 	if (suit === 1){
 		suitString = "hearts";
@@ -59,30 +77,41 @@ function idCard(card){
 	return cardName;
 }
 
+/*this function will run if button 'a' is pressed during round 1.
+it: pops from the deck, compares the card versus option 'a', displays the instructions to the player,
+places the card in the players "hand", advances to the next players turn, and if that was the last player
+for that round, it will move to the next round.*/
+
+function submitRoundOneA(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//see if players guess is correct
+	var suit = currentCard % 4;
+	if (suit === 1 || suit === 2){
+		//TODO create equation to determine the amount of drinks to assign
+		$("#instructions").replaceWith("Assign Drinks!");
+	} else {
+		$("#instructions").replaceWith("Take Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	turn++;
+	if (turn === 4){
+		//TODO is it possible to but some sort of pause here?
+		$("#round1").hide();
+		$("#round2").show();
+	}
+}
+
 //begin main program under this line
+
+//shuffle the deck using fisher-yates
 shuffleArray(deck);
+//TODO write function to get player response using buttons
+//TODO write function that compares user guess to actual card
+
+//set up p1 round 1
+setPlayer(players[turn]);
 
 
-/*
-function startGame(){
-	var json = $.getJSON("http://ajstorch.com/suicide/json/gamedata.json");
-	deck = json.deck; 
-}
-*/
 
-/*
-var deck = [];
-
-function getData(){
-	return $.getJSON('http://ajstorch.com/suicide/json/gamedata.json');
-}
-
-getData().done(function(json){
-	$.each(json, function(key, value){
-    	deck[key] = {Category:val.Category};
-    });
-});
-
-document.write(deck);
-*/
 	

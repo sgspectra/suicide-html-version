@@ -105,6 +105,7 @@ function submitRoundOneA(){
 		$("#round2").show();
 		//reset turns
 		turn = 0;
+		round++;
 	}
 }
 function submitRoundOneB(){
@@ -130,12 +131,19 @@ function submitRoundOneB(){
 		$("#round2").show();
 		//reset turn
 		turn = 0;
+		round++;
 	}
 }
 
 //this function is used to update the players hands
 function updateHands(){
 	//TODO write a function to update the players hands in html (probably $var.append())
+	$(document).ready(function(){
+		$("#p1hand").append("<li>" + p1hand + "</li>");
+		$("#p2hand").append("<li>" + p2hand + "</li>");
+		$("#p3hand").append("<li>" + p3hand + "</li>");
+		$("#p4hand").append("<li>" + p4hand + "</li>");
+	});
 }
 
 //begin main program under this line

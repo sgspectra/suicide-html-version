@@ -82,7 +82,6 @@ function idCard(card){
 it: pops from the deck, compares the card versus option 'a', displays the instructions to the player,
 places the card in the players "hand", advances to the next players turn, and if that was the last player
 for that round, it will move to the next round.*/
-
 function submitRoundOneA(){
 	currentCard = deck.pop();
 	var cardAsString = idCard(currentCard);
@@ -107,6 +106,10 @@ function submitRoundOneA(){
 		turn = 0;
 	}
 }
+/*this function will run if button 'b' is pressed during round 1.
+it: pops from the deck, compares the card versus option 'b', displays the instructions to the player,
+places the card in the players "hand", advances to the next players turn, and if that was the last player
+for that round, it will move to the next round.*/
 function submitRoundOneB(){
 	currentCard = deck.pop();
 	var cardAsString = idCard(currentCard);

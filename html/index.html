@@ -30,35 +30,44 @@
 	<div id="round1">
 		<h4>Round 1</h4>
 		<p>Please select if you think the card will be red or black</p>
-		<p id="whosTurn"></p>
+		<p class="whosTurn"></p>
 		<br/>
 		<button type="button" onclick="submitRoundOneA();">Red</button>
 		<button type="button" onclick="submitRoundOneB();">Black</button>
 		<br/>
-		<p id="instructions"></p>
+		<p class="instructions"></p>
 	</div>
 	<div id="round2">
 		<h4>Round 2</h4>
 		<p>Please select if you think the card will be higher or lower</p>
-		<p id="whosTurn"></p>
-		<button type="button">Higher</button>
-		<button type="button">Lower</button>
+		<p class="whosTurn"></p>
+		<br/>
+		<button type="button" onclick="submitRoundTwoA();">Higher</button>
+		<button type="button" onclick="submitRoundTwoB();">Lower</button>
+		<br/>
+		<p class="instructions"></p>
 	</div>
 	<div id="round3">
 		<h4>Round 3</h4>
 		<p>Please select if you think the card will be inside your pair of cards or outside</p>
-		<p id="whosTurn"></p>
+		<p class="whosTurn"></p>
+		<br/>
 		<button type="button">Inside</button>
 		<button type="button">Outside</button>
+		<br/>
+		<p class="instructions"></p>
 	</div>
 	<div id="round4">
 		<h4>Round 4</h4>
 		<p>Please select what you think the suit of the final card will be</p>
-		<p id="whosTurn"></p>
+		<p class="whosTurn"></p>
+		<br/>
 		<button type="button">Heart</button>
 		<button type="button">Diamond</button>
 		<button type="button">Club</button>
 		<button type="button">Spade</button>
+		<br/>
+		<p class="instructions"></p>
 	</div>
 </body>
 </html>

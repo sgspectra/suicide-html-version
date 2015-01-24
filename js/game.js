@@ -44,7 +44,7 @@ function submitPlayers(form){
 function setPlayer(player){
 	//update html to show whos turn it is
 	$(document).ready(function(){
-		$("#whosTurn").replaceWith("It's "+player+ " turn!");
+		$(".whosTurn").replaceWith("It's "+player+ " turn!");
 	});
 }
 
@@ -89,9 +89,9 @@ function submitRoundOneA(){
 	var suit = currentCard % 4;
 	if (suit === 1 || suit === 2){
 		//TODO create equation to determine the amount of drinks to assign
-		$("#instructions").replaceWith("Assign Drinks!");
+		$(".instructions").replaceWith("Assign Drinks!");
 	} else {
-		$("#instructions").replaceWith("Take Drinks!");
+		$(".instructions").replaceWith("Take Drinks!");
 	}
 	//put card in players hand
 	hands[turn].push(cardAsString);
@@ -106,6 +106,7 @@ function submitRoundOneA(){
 		turn = 0;
 		round++;
 	}
+	setPlayer(players[turn]);
 }
 /*this function will run if button 'b' is pressed during round 1.
 it: pops from the deck, compares the card versus option 'b', displays the instructions to the player,
@@ -115,12 +116,12 @@ function submitRoundOneB(){
 	currentCard = deck.pop();
 	var cardAsString = idCard(currentCard);
 	//see if players guess is correct
-	var suit = currentCar % 4;
+	var suit = currentCard % 4;
 	if (suit === 0 || suit === 3){
 		//TODO create functions to give drinks as number
-		$("#insturctions").replaceWith("Assign Drinks!");
+		$(".insturctions").replaceWith("Assign Drinks!");
 	} else {
-		$("#insturctions").replaceWith("Take Drinks!");
+		$(".insturctions").replaceWith("Take Drinks!");
 	}
 	//put card in players hand
 	hands[turn].push(cardAsString);
@@ -133,6 +134,59 @@ function submitRoundOneB(){
 		$("#round1").hide();
 		$("#round2").show();
 		//reset turn
+		turn = 0;
+		round++;
+	}
+	setPlayer(players[turn]);
+}
+
+function submitRoundTwoA(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//see if players guess is correct
+	var currentPlayerHand = hands[turn];
+	var firstCard = currentPlayerHand[0];
+	//correct if currentCard is higher
+	var fCardNumber = Math.floor(firstCard/4);
+	var curCardNumber = Math.floor(currentCard/4);
+	if(fCardNumber<curCardNumber){
+		//win
+		$(".instructions").replaceWith("Assign Drinks!");
+	}else{
+		//loss
+		$(".instructions").replaceWith("Take Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	turn++;
+	if (turn ===4){
+		$("#round2").hide();
+		$("#round3").show();
+		turn = 0;
+		round++;
+	}
+}
+
+function submitRoundTwoB(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//see if players guess is correct
+	var currentPlayerHand = hands[turn];
+	var firstCard = currentPlayerHand[0];
+	//correct if currentCard is higher
+	var fCardNumber = Math.floor(firstCard/4);
+	var curCardNumber = Math.floor(currentCard/4);
+	if(fCardNumber<curCardNumber){
+		//win
+		$(".instructions").replaceWith("Take Drinks!");
+	}else{
+		//loss
+		$(".instructions").replaceWith("Assign Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	turn++;
+	if (turn ===4){
+		$("#round2").hide();
+		$("#round3").show();
 		turn = 0;
 		round++;
 	}

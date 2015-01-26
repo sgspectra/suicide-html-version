@@ -44,7 +44,7 @@ function submitPlayers(form){
 function setPlayer(player){
 	//update html to show whos turn it is
 	$(document).ready(function(){
-		$(".whosTurn").replaceWith("It's "+player+ " turn!");
+		$(".whosTurn").text("It's "+player+ " turn!");
 	});
 }
 
@@ -89,12 +89,17 @@ function submitRoundOneA(){
 	var suit = currentCard % 4;
 	if (suit === 1 || suit === 2){
 		//TODO create equation to determine the amount of drinks to assign
-		$(".instructions").replaceWith("Assign Drinks!");
+		$(".instructions").text(function(){
+			return "Assign Drinks!";
+		});
 	} else {
-		$(".instructions").replaceWith("Take Drinks!");
+		$(".instructions").text(function(){
+			return "Take Drinks!";
+		});
 	}
 	//put card in players hand
 	hands[turn].push(cardAsString);
+	updateHands();
 	//move to next players turn
 	turn++;
 	if (turn === 4){
@@ -119,12 +124,17 @@ function submitRoundOneB(){
 	var suit = currentCard % 4;
 	if (suit === 0 || suit === 3){
 		//TODO create functions to give drinks as number
-		$(".insturctions").replaceWith("Assign Drinks!");
+		$(".insturctions").text(function(){
+			return "Assign Drinks!";
+		});
 	} else {
-		$(".insturctions").replaceWith("Take Drinks!");
+		$(".insturctions").text(function(){
+			return "Take Drinks!";
+		});
 	}
 	//put card in players hand
 	hands[turn].push(cardAsString);
+	updateHands();
 	//move to next players turn
 	turn++;
 	//check to see if that was the last player for that round
@@ -151,12 +161,17 @@ function submitRoundTwoA(){
 	var curCardNumber = Math.floor(currentCard/4);
 	if(fCardNumber<curCardNumber){
 		//win
-		$(".instructions").replaceWith("Assign Drinks!");
+		$(".instructions").text(function(){
+			return "Assign Drinks!";
+		});
 	}else{
 		//loss
-		$(".instructions").replaceWith("Take Drinks!");
+		$(".instructions").text(function(){
+			return "Take Drinks!";
+		});
 	}
 	hands[turn].push(cardAsString);
+	updateHands();
 	turn++;
 	if (turn ===4){
 		$("#round2").hide();
@@ -176,13 +191,18 @@ function submitRoundTwoB(){
 	var fCardNumber = Math.floor(firstCard/4);
 	var curCardNumber = Math.floor(currentCard/4);
 	if(fCardNumber<curCardNumber){
-		//win
-		$(".instructions").replaceWith("Take Drinks!");
-	}else{
 		//loss
-		$(".instructions").replaceWith("Assign Drinks!");
+		$(".instructions").text(function(){
+			return "Take Drinks!";
+		});
+	}else{
+		//win
+		$(".instructions").text(function(){
+			return "Assign Drinks!";
+		});
 	}
 	hands[turn].push(cardAsString);
+	updateHands();
 	turn++;
 	if (turn ===4){
 		$("#round2").hide();
@@ -192,14 +212,92 @@ function submitRoundTwoB(){
 	}
 }
 
+function submitRoundThreeA(){
+	currentCard = deck.pop();
+	var currentPlayerHand = hands[turn];
+	var cardOneNumber = Math.floor(currentPlayerHand[0]);
+	var cardTwoNumber = Math.floor(currentPlayerHand[1]);
+	var currentCardNumber = Math.floor(currentCard);
+	var cardAsString = idCard(currentCard);
+	if (cardOneNumber<cardTwoNumber){
+		//inside
+		if (currentCardNumber>cardOneNumber && currentCardNumber<cardTwoNumber){
+			//win
+		} else{
+			//loss
+		}
+	} else if (cardOneNumber>cardTwoNumber){
+		//inside
+		if (currentCardNumber<cardOneNumber && currentCardNumber>cardTwoNumber){
+			//win
+		} else{
+			//loss
+		}
+	} else {
+		//loss
+	}
+	//add card to player hand
+	hands[turn].push(cardAsString);
+	updateHands();
+	//increment turn
+	turn++;
+	//determine if next round or not
+	if (turn === 4){
+		$("#round3").hide();
+		$("#round4").show();
+		turn = 0;
+		round++;
+	}
+	
+}
+
+function submitRoundThreeB(){
+	currentCard = deck.pop();
+	var currentPlayerHand = hands[turn];
+	var cardOneNumber = Math.floor(currentPlayerHand[0]);
+	var cardTwoNumber = Math.floor(currentPlayerHand[1]);
+	var currentCardNumber = Math.floor(currentCard);
+	var cardAsString = idCard(currentCard);
+	if (cardOneNumber<cardTwoNumber){
+		//outside
+		if (currentCardNumber<cardOneNumber && currentCardNumber>cardTwoNumber){
+			//win
+		} else{
+			//loss
+		}
+	} else if (cardOneNumber>cardTwoNumber){
+		//outside
+		if (currentCardNumber>cardOneNumber && currentCardNumber<cardTwoNumber){
+			//win
+		} else{
+			//loss
+		}
+	} else {
+		//loss
+	}
+	//add card to player hand
+	hands[turn].push(cardAsString);
+	updateHands();
+	//increment turn
+	turn++;
+	//determine if next round or not
+	if (turn === 4){
+		$("#round3").hide();
+		$("#round4").show();
+		turn = 0;
+		round++;
+	}
+	
+}
+
 //this function is used to update the players hands
 function updateHands(){
 	//TODO write a function to update the players hands in html (probably $var.append())
 	$(document).ready(function(){
-		$("#p1hand").append("<li>" + p1hand + "</li>");
-		$("#p2hand").append("<li>" + p2hand + "</li>");
-		$("#p3hand").append("<li>" + p3hand + "</li>");
-		$("#p4hand").append("<li>" + p4hand + "</li>");
+		$("#p1hand").text("<li>" + p1hand + "</li>");
+		$("#p2hand").text("<li>" + p2hand + "</li>");
+		$("#p3hand").text("<li>" + p3hand + "</li>");
+		$("#p4hand").text("<li>" + p4hand + "</li>");
 	});
 }
 

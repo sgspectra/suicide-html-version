@@ -2,7 +2,7 @@
 //array containing player names
 var players = [];
 //array with 1-54 to be used to id "cards"
-var deck = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52];
+var deck = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51];
 //variable to hold card that is being used
 var currentCard = 0;
 //arrays to hold what cards are in a players hand
@@ -44,7 +44,11 @@ function submitPlayers(form){
 function setPlayer(player){
 	//update html to show whos turn it is
 	$(document).ready(function(){
-		$(".whosTurn").text("It's "+player+ " turn!");
+		if(player.charAt(player.length-1) === "s"){
+			$(".whosTurn").text("It's "+player+"' turn!");
+		}else{
+			$(".whosTurn").text("It's "+player+ "'s turn!");
+		}
 	});
 }
 
@@ -159,7 +163,7 @@ function submitRoundTwoA(){
 	//correct if currentCard is higher
 	var fCardNumber = Math.floor(firstCard/4);
 	var curCardNumber = Math.floor(currentCard/4);
-	if(fCardNumber<curCardNumber){
+	if(fCardNumber>curCardNumber){
 		//win
 		$(".instructions").text(function(){
 			return "Assign Drinks!";
@@ -290,26 +294,87 @@ function submitRoundThreeB(){
 	
 }
 
+function submitRoundFourA(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//if hearts win
+	if (currentCard % 4 === 1){
+		$(".instructions").text("Assign Drinks!");
+	} else {
+		$(".instructions").text("Take Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	updateHands();
+	turn++;
+	if(turn === 4){
+		$("#round4").hide();
+	}
+}
+
+function submitRoundFourB(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//if diamonds win
+	if (currentCard % 4 === 2){
+		$(".instructions").text("Assign Drinks!");
+	} else {
+		$(".instructions").text("Take Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	updateHands();
+	turn++;
+	if(turn === 4){
+		$("#round4").hide();
+	}
+}
+
+function submitRoundFourC(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//if clubs win
+	if (currentCard % 4 === 0){
+		$(".instructions").text("Assign Drinks!");
+	} else {
+		$(".instructions").text("Take Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	updateHands();
+	turn++;
+	if(turn === 4){
+		$("#round4").hide();
+	}
+}
+
+function submitRoundFourD(){
+	currentCard = deck.pop();
+	var cardAsString = idCard(currentCard);
+	//if spades win
+	if (currentCard % 4 === 3){
+		$(".instructions").text("Assign Drinks!");
+	} else {
+		$(".instructions").text("Take Drinks!");
+	}
+	hands[turn].push(cardAsString);
+	updateHands();
+	turn++;
+	if(turn === 4){
+		$("#round4").hide();
+	}
+}
+
 //this function is used to update the players hands
 function updateHands(){
-	//TODO write a function to update the players hands in html (probably $var.append())
 	$(document).ready(function(){
-		$("#p1hand").text("<li>" + p1hand + "</li>");
-		$("#p2hand").text("<li>" + p2hand + "</li>");
-		$("#p3hand").text("<li>" + p3hand + "</li>");
-		$("#p4hand").text("<li>" + p4hand + "</li>");
+		$("#p1hand").text(p1hand);
+		$("#p2hand").text(p2hand);
+		$("#p3hand").text(p3hand);
+		$("#p4hand").text(p4hand);
 	});
 }
 
-//begin main program under this line
-
 //shuffle the deck using fisher-yates
 shuffleArray(deck);
-//TODO write function to get player response using buttons
-//TODO write function that compares user guess to actual card
 
-//set up p1 round 1
-setPlayer(players[turn]);
 
 
 

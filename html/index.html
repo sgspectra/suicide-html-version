@@ -4,10 +4,11 @@
 	<title>Suicide: The Drinking Game</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/game.js"></script>
+	<link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-	<h2>Suicide: The Drinking Game</h2>
-	<h3 class="players">Player Names</h3>
+	<h1 class="header">Suicide: The Drinking Game</h1>
+	<h3 class="players">Register Player Names</h3>
 	<p class="players">Enter player names in the fields below. Leave blank if there is no player.</p>
 	<form class="players" onsubmit="submitPlayers(this); return false;">
 		Player 1: <input type="text" name="player1"><br/>
@@ -16,8 +17,8 @@
 		Player 4: <input type="text" name="player4"><br/>
 		<input type="submit" value="Submit and Begin">
 	</form>
-	<div id="hands">
-		<h2>Players Hands</h2>
+	<div class="hands">
+		<h2>Players' Hands</h2>
 		<h5>Player 1 Hand:</h5>
 		<ul id="p1hand"></ul>
 		<h5>Player 2 Hand:</h5>
@@ -27,47 +28,51 @@
 		<h5>Player 4 Hand:</h5>
 		<ul id="p4hand"></ul>
 	</div>
-	<div id="round1">
-		<h4>Round 1</h4>
-		<p>Please select if you think the card will be red or black</p>
+	<div class="round" id="round1">
+		<h2>Round 1</h2>
 		<p class="whosTurn"></p>
+		<p>Please select if you think the card will be red or black</p>
 		<br/>
 		<button type="button" onclick="submitRoundOneA();">Red</button>
 		<button type="button" onclick="submitRoundOneB();">Black</button>
 		<br/>
 		<p class="instructions"></p>
 	</div>
-	<div id="round2">
-		<h4>Round 2</h4>
-		<p>Please select if you think the card will be higher or lower</p>
+	<div class="round" id="round2">
+		<h2>Round 2</h2>
 		<p class="whosTurn"></p>
+		<p>Please select if you think the card will be higher or lower</p>
 		<br/>
 		<button type="button" onclick="submitRoundTwoA();">Higher</button>
 		<button type="button" onclick="submitRoundTwoB();">Lower</button>
 		<br/>
 		<p class="instructions"></p>
 	</div>
-	<div id="round3">
-		<h4>Round 3</h4>
-		<p>Please select if you think the card will be inside your pair of cards or outside</p>
+	<div class="round" id="round3">
+		<h2>Round 3</h2>
 		<p class="whosTurn"></p>
+		<p>Please select if you think the card will be inside your pair of cards or outside</p>
 		<br/>
-		<button type="button">Inside</button>
-		<button type="button">Outside</button>
+		<button type="button" onclick="submitRoundThreeA();">Inside</button>
+		<button type="button" onclick="submitRoundThreeB();">Outside</button>
 		<br/>
 		<p class="instructions"></p>
 	</div>
-	<div id="round4">
-		<h4>Round 4</h4>
-		<p>Please select what you think the suit of the final card will be</p>
+	<div class="round" id="round4">
+		<h2>Round 4</h2>
 		<p class="whosTurn"></p>
+		<p>Please select what you think the suit of the final card will be</p>
 		<br/>
-		<button type="button">Heart</button>
-		<button type="button">Diamond</button>
-		<button type="button">Club</button>
-		<button type="button">Spade</button>
+		<button type="button" onclick="submitRoundFourA();">Heart</button>
+		<button type="button" onclick="submitRoundFourB();">Diamond</button>
+		<button type="button" onclick="submitRoundFourC();">Club</button>
+		<button type="button" onclick="submitRoundFourD();">Spade</button>
 		<br/>
 		<p class="instructions"></p>
+	</div>
+	<div id="roundH">
+		<div id="give"></div>
+		<div id="take"></div>
 	</div>
 </body>
 </html>

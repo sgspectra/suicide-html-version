@@ -1,0 +1,33 @@
+@font-face {
+	font-family:'nineteenfortytwo';
+	src: url('fonts/1942.ttf') format('truetype');
+}
+
+body {
+	font-family:"Courier New",Courier,monospace;
+	background-color:#FFFFDE;
+}
+
+h1,h2,h3,h4,h5 {
+	font-family:nineteenfortytwo;
+}
+
+.header {
+	text-align:center;
+}
+
+.players {
+	text-align:center;
+}
+
+.hands {
+	float:left;
+	width:202px;
+	height:212px;
+}
+
+.round {
+	text-align:center;
+	float:left;
+	width:850px;
+}

@@ -98,7 +98,7 @@ function submitRoundOneA(){
 		$(".instructions").text("Take Drinks!");
 	}
 	//put card in players hand
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	//move to next players turn
 	turn++;
@@ -129,7 +129,7 @@ function submitRoundOneB(){
 		$(".instructions").text("Take Drinks!");
 	}
 	//put card in players hand
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	//move to next players turn
 	turn++;
@@ -162,7 +162,7 @@ function submitRoundTwoA(){
 		//loss
 		$(".instructions").text("Take Drinks!");
 	}
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	turn++;
 	if (turn ===4){
@@ -183,14 +183,14 @@ function submitRoundTwoB(){
 	//correct if currentCard is higher
 	var fCardNumber = Math.floor(firstCard/4);
 	var curCardNumber = Math.floor(currentCard/4);
-	if(fCardNumber>curCardNumber){
+	if(fCardNumber<curCardNumber){
 		//loss
 		$(".instructions").text("Take Drinks!");
 	}else{
 		//win
 		$(".instructions").text("Give Drinks!");
 	}
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	turn++;
 	if (turn ===4){
@@ -232,7 +232,7 @@ function submitRoundThreeA(){
 		$(".instructions").text("Take Drinks!");
 	}
 	//add card to player hand
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	//increment turn
 	turn++;
@@ -276,7 +276,7 @@ function submitRoundThreeB(){
 		$(".instructions").text("Take Drinks!");
 	}
 	//add card to player hand
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	//increment turn
 	turn++;
@@ -299,7 +299,7 @@ function submitRoundFourA(){
 	} else {
 		$(".instructions").text("Take Drinks!");
 	}
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	turn++;
 	if(turn === 4){
@@ -317,7 +317,7 @@ function submitRoundFourB(){
 	} else {
 		$(".instructions").text("Take Drinks!");
 	}
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	turn++;
 	if(turn === 4){
@@ -335,7 +335,7 @@ function submitRoundFourC(){
 	} else {
 		$(".instructions").text("Take Drinks!");
 	}
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	turn++;
 	if(turn === 4){
@@ -353,7 +353,7 @@ function submitRoundFourD(){
 	} else {
 		$(".instructions").text("Take Drinks!");
 	}
-	hands[turn].push(cardAsString);
+	hands[turn].push(currentCard);
 	updateHands();
 	turn++;
 	if(turn === 4){
@@ -365,10 +365,15 @@ function submitRoundFourD(){
 //this function is used to update the players hands
 function updateHands(){
 	$(document).ready(function(){
-		$("#p1hand").text(p1hand);
-		$("#p2hand").text(p2hand);
-		$("#p3hand").text(p3hand);
-		$("#p4hand").text(p4hand);
+		if(turn === 0){
+		$("#p1hand").append("<img src=\"cards/"+p1hand[round]+".png\" width=\"30\" height=\"50\"/>");
+	}else if(turn === 1){
+		$("#p2hand").append("<img src=\"cards/"+p2hand[round]+".png\" width=\"30\" height=\"50\"/>");
+	}else if(turn === 2){
+		$("#p3hand").append("<img src=\"cards/"+p3hand[round]+".png\" width=\"30\" height=\"50\"/>");
+	}else{
+		$("#p4hand").append("<img src=\"cards/"+p4hand[round]+".png\" width=\"30\" height=\"50\"/>");
+	}
 	});
 }
 

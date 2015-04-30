@@ -304,6 +304,7 @@ function submitRoundFourA(){
 	turn++;
 	if(turn === 4){
 		$("#round4").hide();
+		$("#roundH").show();
 	}
 	setPlayer(players[turn]);
 }
@@ -322,6 +323,7 @@ function submitRoundFourB(){
 	turn++;
 	if(turn === 4){
 		$("#round4").hide();
+		$("#roundH").show();
 	}
 	setPlayer(players[turn]);
 }
@@ -340,6 +342,7 @@ function submitRoundFourC(){
 	turn++;
 	if(turn === 4){
 		$("#round4").hide();
+		$("#roundH").show();
 	}
 	setPlayer(players[turn]);
 }
@@ -358,6 +361,7 @@ function submitRoundFourD(){
 	turn++;
 	if(turn === 4){
 		$("#round4").hide();
+		$("#roundH").show();
 	}
 	setPlayer(players[turn]);
 }
@@ -375,6 +379,11 @@ function updateHands(){
 		$("#p4hand").append("<img src=\"cards/"+p4hand[round]+".png\" width=\"30\" height=\"50\"/>");
 	}
 	});
+}
+
+//function to draw a new card for the "H" portion of the game
+function drawGiveTake(){
+	
 }
 
 //shuffle the deck using fisher-yates
